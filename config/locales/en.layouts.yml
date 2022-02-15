@@ -1,0 +1,11 @@
+en:
+  layouts:
+    shared:
+      head:
+        title: Avito
+      nav:
+        add_post: Add article
+        application_name: Avito
+        sign_in: Sign in
+        sign_out: Sign out
+        register: Register

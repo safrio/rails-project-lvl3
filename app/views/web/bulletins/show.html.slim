@@ -1,0 +1,9 @@
+p#notice = notice
+
+p
+  strong Body:
+  = @bulletin.body
+
+=> link_to 'Edit', edit_bulletin_path(@bulletin)
+'|
+=< link_to 'Back', bulletins_path
