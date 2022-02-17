@@ -4,7 +4,8 @@ en:
       head:
         title: Avito
       nav:
-        add_post: Add article
+        my_bulletin: My bulletin
+        add_bulletin: Add bulletin
         application_name: Avito
         sign_in: Sign in
         sign_out: Sign out

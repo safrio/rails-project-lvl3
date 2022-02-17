@@ -16,7 +16,10 @@ class BulletinsTest < ApplicationSystemTestCase
     visit bulletins_url
     click_on 'New Bulletin'
 
-    fill_in 'Body', with: @bulletin.body
+    fill_in 'Category', with: @bulletin.category_id
+    fill_in 'Description', with: @bulletin.description
+    fill_in 'Name', with: @bulletin.name
+    fill_in 'User', with: @bulletin.user_id
     click_on 'Create Bulletin'
 
     assert_text 'Bulletin was successfully created'
@@ -27,7 +30,10 @@ class BulletinsTest < ApplicationSystemTestCase
     visit bulletins_url
     click_on 'Edit', match: :first
 
-    fill_in 'Body', with: @bulletin.body
+    fill_in 'Category', with: @bulletin.category_id
+    fill_in 'Description', with: @bulletin.description
+    fill_in 'Name', with: @bulletin.name
+    fill_in 'User', with: @bulletin.user_id
     click_on 'Update Bulletin'
 
     assert_text 'Bulletin was successfully updated'

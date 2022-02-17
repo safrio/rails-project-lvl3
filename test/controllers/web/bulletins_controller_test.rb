@@ -2,51 +2,58 @@
 
 require 'test_helper'
 
-module Web
-  class BulletinsControllerTest < ActionDispatch::IntegrationTest
-    setup do
-      @bulletin = bulletins(:one)
-    end
+class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @bulletin_attrs = {
+      title: Faker::Job.title,
+      description: Faker::Lorem.paragraph_by_chars(number: 150),
+      category_id: categories(:one).id
+    }
 
-    test 'should get index' do
-      get root_url
-      assert_response :success
-    end
+    @existed_bulletin = bulletins(:one)
 
-    test 'should get new' do
-      get new_bulletin_url
-      assert_response :success
-    end
+    @image = fixture_file_upload(Rails.root.join('test/fixtures/files/test.jpg'), 'image/jpg')
 
-    test 'should create bulletin' do
-      assert_difference('Bulletin.count') do
-        post bulletins_url, params: { bulletin: { body: @bulletin.body } }
-      end
+    sign_in(users(:one))
+  end
 
-      assert_redirected_to bulletin_url(Bulletin.last)
-    end
+  test 'should get index' do
+    get root_url
+    assert_response :success
+  end
 
-    test 'should show bulletin' do
-      get bulletin_url(@bulletin)
-      assert_response :success
-    end
+  test 'should get new' do
+    get new_bulletin_url
+    assert_response :success
+  end
 
-    test 'should get edit' do
-      get edit_bulletin_url(@bulletin)
-      assert_response :success
-    end
+  test 'should create bulletin' do
+    post bulletins_url, params: { bulletin: @bulletin_attrs.merge(image: @image) }
 
-    test 'should update bulletin' do
-      patch bulletin_url(@bulletin), params: { bulletin: { body: @bulletin.body } }
-      assert_redirected_to bulletin_url(@bulletin)
-    end
+    assert { Bulletin.find_by! @bulletin_attrs.merge(user: current_user) }
 
-    test 'should destroy bulletin' do
-      assert_difference('Bulletin.count', -1) do
-        delete bulletin_url(@bulletin)
-      end
+    assert_redirected_to bulletin_url(Bulletin.last)
+  end
 
-      assert_redirected_to root_url
-    end
+  test 'should show bulletin' do
+    get bulletin_url(@existed_bulletin)
+    assert_response :success
+  end
+
+  test 'should get edit' do
+    get edit_bulletin_url(@existed_bulletin)
+    assert_response :success
+  end
+
+  test 'should update bulletin' do
+    patch bulletin_url(@existed_bulletin), params: { bulletin: @bulletin_attrs.merge(image: @image) }
+    assert_redirected_to bulletin_url(@existed_bulletin)
+  end
+
+  test 'should destroy bulletin' do
+    delete bulletin_url(@existed_bulletin)
+    assert { !Bulletin.find_by(@existed_bulletin.attributes) }
+
+    assert_redirected_to bulletins_url
   end
 end

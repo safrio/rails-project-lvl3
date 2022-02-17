@@ -6,13 +6,9 @@ module Web
       user = User.find_or_initialize_by(email: auth.info.email.downcase)
       user.save!
 
-      if user.persisted?
-        sign_in user
+      sign_in user
 
-        redirect_to root_path
-      else
-        redirect_to new_user_path
-      end
+      redirect_to root_path
     rescue ActiveRecord::RecordInvalid => e
       e.rollbar_context = { auth_hash: auth }
       raise
@@ -28,25 +24,5 @@ module Web
     def auth
       request.env['omniauth.auth']
     end
-
-    # skip_before_action :verify_authenticity_token, only: :create
-
-    # def create
-    #   p "!!!auth_hash: #{auth_hash}"
-    #   @user = User.find_or_create_from_auth_hash(auth_hash)
-    #   self.current_user = @user
-    #   redirect_to '/'
-    # end
-
-    # def failure
-    #   p "params: #{params}"
-    #   redirect_to '/'
-    # end
-
-    # protected
-
-    # def auth_hash
-    #   request.env['omniauth.auth']
-    # end
   end
 end

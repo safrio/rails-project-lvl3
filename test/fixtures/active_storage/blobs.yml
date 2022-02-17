@@ -1,0 +1,3 @@
+ones_picture_blob: <%= ActiveStorage::Blob.fixture(filename: "test.jpg") %>
+
+twos_picture_blob: <%= ActiveStorage::Blob.fixture(filename: "test2.jpg") %>

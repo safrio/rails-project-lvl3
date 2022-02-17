@@ -1,8 +1,24 @@
 p#notice = notice
 
 p
-  strong Body:
-  = @bulletin.body
+  strong Category:
+  = @bulletin.category.name
+
+p
+  strong title:
+  = @bulletin.title
+
+p
+  strong Description:
+  = @bulletin.description
+
+p
+  strong Published at:
+  = time_ago_in_words @bulletin.created_at
+
+p
+  strong Image:
+  = image_tag @bulletin.image
 
 => link_to 'Edit', edit_bulletin_path(@bulletin)
 '|

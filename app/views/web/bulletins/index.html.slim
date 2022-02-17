@@ -3,7 +3,11 @@ h1 Listing bulletins
 table
   thead
     tr
-      th Body
+      th Category
+      th title
+      th Description
+      th Published at
+      th Image
       th
       th
       th
@@ -11,11 +15,11 @@ table
   tbody
     - @bulletins.each do |bulletin|
       tr
-        td = bulletin.body
+        td = bulletin.category.name
+        td = bulletin.title
+        td = bulletin.description
+        td = time_ago_in_words bulletin.created_at
+        td = image_tag bulletin.image
         td = link_to 'Show', bulletin
         td = link_to 'Edit', edit_bulletin_path(bulletin)
         td = link_to 'Destroy', bulletin, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Bulletin', new_bulletin_path

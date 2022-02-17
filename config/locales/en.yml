@@ -1,1 +1,6 @@
 en:
+  web:
+    bulletins:
+      restricted_content: You are not authorized to perform this action. Please, sign in
+      form:
+        submit: Submit
