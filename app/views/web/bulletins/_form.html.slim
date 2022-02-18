@@ -1,3 +1,5 @@
+hr
+
 = simple_form_for(@bulletin) do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
@@ -5,5 +7,7 @@
   = f.input :title, required: true
   = f.input :description, required: true, hint: (t('.minimum_length', count: @minimum_length) if @minimum_length)
   = f.association :category, required: true
+  - if @bulletin.image.present?
+    = image_tag @bulletin.image
   = f.input :image, required: true
   = f.button :submit, t('.submit'), class: 'btn btn-success mt-4 btn-block'
