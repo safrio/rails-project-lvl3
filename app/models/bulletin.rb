@@ -39,6 +39,14 @@ class Bulletin < ApplicationRecord
     event?(:archive)
   end
 
+  def publishable?
+    event?(:publish)
+  end
+
+  def rejectable?
+    event?(:reject)
+  end
+
   private
 
   def event?(event)
