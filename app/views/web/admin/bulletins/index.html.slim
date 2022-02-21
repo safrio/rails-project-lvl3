@@ -1,0 +1,23 @@
+h1.h2.mb-4 Bulletins on moderation
+
+table.table.table-borderless
+  thead
+    tr
+      th = t('.title')
+      th = t('.state')
+      th = t('.published_at')
+      th = t('.actions')
+  tbody
+    - @bulletins.each do |bulletin|
+      tr
+        td = bulletin.title
+        td = bulletin.state
+        td
+          span(title=bulletin.created_at) = time_ago_in_words bulletin.created_at
+        td
+          = link_to t('.show'), bulletin, class: 'me-2 btn btn-primary'
+          = link_to t('.edit'), edit_bulletin_path(bulletin), class: 'me-2 btn btn-primary'
+          - if bulletin.moderatable?
+            = link_to t('.moderate'), moderate_bulletin_path(bulletin), method: :patch, class: 'me-2 btn btn-success'
+          - if bulletin.archivable?
+            = link_to t('.archive'), archive_bulletin_path(bulletin), data: { confirm: t('are_you_sure') }, method: :patch, class: 'btn btn-danger'
