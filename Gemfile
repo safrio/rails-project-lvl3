@@ -63,9 +63,11 @@ group :test do
   gem 'webdrivers'
 end
 
+gem 'aasm'
 gem 'flash_rails_messages'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
+gem 'pundit'
 gem 'rollbar'
 gem 'simple_form'
 gem 'slim-rails'
