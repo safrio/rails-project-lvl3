@@ -2,11 +2,11 @@
 
 module Web
   class BulletinsController < ApplicationController
-    before_action :set_bulletin, only: %i[show edit update destroy]
-    before_action :authenticate_user!, except: :index
+    before_action :set_bulletin, except: %i[create new index]
+    before_action :authenticate_user!, except: %i[index show]
 
     def index
-      @bulletins = Bulletin.order(id: :desc)
+      @bulletins = Bulletin.published.order(id: :desc)
     end
 
     def show; end
@@ -22,12 +22,10 @@ module Web
       if @bulletin.save
         redirect_to bulletin_url(@bulletin), notice: 'Bulletin was successfully created.'
       else
-        Rails.logger.debug { "@bulletin.errors: #{@bulletin.errors.full_messages}" } if @bulletin.errors.present?
         render :new, alert: @bulletin.errors.full_messages
       end
     end
 
-    # PATCH/PUT /bulletins/1 or /bulletins/1.json
     def update
       if @bulletin.update(bulletin_params)
         redirect_to bulletin_url(@bulletin), notice: 'Bulletin was successfully updated.'
@@ -36,11 +34,16 @@ module Web
       end
     end
 
-    # DELETE /bulletins/1 or /bulletins/1.json
-    def destroy
-      @bulletin.destroy
+    def archive
+      @bulletin.archive!
 
-      redirect_to bulletins_url, notice: 'Bulletin was successfully destroyed.'
+      redirect_to profile_url, notice: 'Bulletin was successfully archieved.'
+    end
+
+    def moderate
+      @bulletin.moderate!
+
+      redirect_to profile_url, notice: 'Bulletin was successfully archieved.'
     end
 
     private
