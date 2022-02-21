@@ -49,11 +49,4 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     patch bulletin_url(@existed_bulletin), params: { bulletin: @bulletin_attrs.merge(image: @image) }
     assert_redirected_to bulletin_url(@existed_bulletin)
   end
-
-  test 'should destroy bulletin' do
-    delete bulletin_url(@existed_bulletin)
-    assert { !Bulletin.find_by(@existed_bulletin.attributes) }
-
-    assert_redirected_to bulletins_url
-  end
 end
