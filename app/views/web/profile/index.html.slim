@@ -1,0 +1,7 @@
+h1 Profile
+hr
+
+= render partial: 'web/shared/bulletins', bulletins: @bulletins
+
+hr
+= link_to t('.add_bulletin'), new_bulletin_path, class: 'btn btn-primary'
