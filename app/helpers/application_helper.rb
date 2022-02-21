@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  include AuthConcern
+
   def nav_menu_item(name, path = '#', options = {})
     assembled_options = options.merge(class: "nav-link link-dark #{active?(path)}")
     tag.li class: 'nav-item' do
@@ -17,13 +19,5 @@ module ApplicationHelper
     elsif current_page?(path)
       'active'
     end
-  end
-
-  def signed_in?
-    !!current_user
-  end
-
-  def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
   end
 end
