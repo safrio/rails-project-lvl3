@@ -14,6 +14,10 @@ module AuthConcern
     !!current_user&.present?
   end
 
+  def admin?
+    !!current_user&.admin?
+  end
+
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end
@@ -21,6 +25,10 @@ module AuthConcern
   def authenticate_user!
     return if signed_in?
 
-    redirect_to root_path, alert: t('.restricted_content')
+    redirect_to root_path, alert: t('restricted_content')
+  end
+
+  def authenticate_admin!
+    return redirect_to root_path, alert: t('restricted_content') unless current_user.admin?
   end
 end
