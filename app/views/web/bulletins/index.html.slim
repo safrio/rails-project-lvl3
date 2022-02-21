@@ -1,25 +1,11 @@
-h1 Listing bulletins
+h1 = t('.bulletins')
 
-table
-  thead
-    tr
-      th Category
-      th title
-      th Description
-      th Published at
-      th Image
-      th
-      th
-      th
-
-  tbody
-    - @bulletins.each do |bulletin|
-      tr
-        td = bulletin.category.name
-        td = bulletin.title
-        td = bulletin.description
-        td = time_ago_in_words bulletin.created_at
-        td = image_tag bulletin.image
-        td = link_to 'Show', bulletin
-        td = link_to 'Edit', edit_bulletin_path(bulletin)
-        td = link_to 'Destroy', bulletin, data: { confirm: 'Are you sure?' }, method: :delete
+- @bulletins.each do |bulletin|
+  .card-deck.w-25.float-start.m-2
+    .card.shadow-sm
+      = link_to bulletin
+        - image_tag bulletin.image, class: 'card-img-top x-object-fit-cover'
+      .card-body
+        h5.card-title = link_to bulletin.title, bulletin
+      .card-footer
+        small.text-muted = time_ago_in_words bulletin.created_at
