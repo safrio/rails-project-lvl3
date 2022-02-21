@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     get :profile, to: 'profile#index'
 
     scope 'admin', as: 'admin', module: :admin do
-      root 'bulletins#index'
+      root 'bulletins#on_moderation'
       resources :bulletins do
         member do
           patch :publish
