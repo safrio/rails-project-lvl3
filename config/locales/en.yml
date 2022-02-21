@@ -1,7 +1,8 @@
 en:
+  restricted_content: You are not authorized to perform this action. Please, sign in
+  are_you_sure: Are you sure?
   web:
     bulletins:
-      restricted_content: You are not authorized to perform this action. Please, sign in
       form:
         submit: Submit
       new:
