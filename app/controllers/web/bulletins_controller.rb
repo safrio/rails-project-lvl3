@@ -3,7 +3,6 @@
 module Web
   class BulletinsController < ApplicationController
     before_action :set_bulletin, except: %i[create new index]
-    before_action :authenticate_user!, except: %i[index show]
 
     def index
       @bulletins = Bulletin.published.order(id: :desc)
@@ -12,12 +11,16 @@ module Web
     def show; end
 
     def new
+      authorize Bulletin
       @bulletin = Bulletin.new
     end
 
-    def edit; end
+    def edit
+      authorize @bulletin
+    end
 
     def create
+      authorize Bulletin
       @bulletin = current_user.bulletins.new(bulletin_params)
       if @bulletin.save
         redirect_to bulletin_url(@bulletin), notice: 'Bulletin was successfully created.'
@@ -27,6 +30,7 @@ module Web
     end
 
     def update
+      authorize @bulletin
       if @bulletin.update(bulletin_params)
         redirect_to bulletin_url(@bulletin), notice: 'Bulletin was successfully updated.'
       else
@@ -35,12 +39,14 @@ module Web
     end
 
     def archive
+      authorize @bulletin
       @bulletin.archive!
 
       redirect_to profile_url, notice: 'Bulletin was successfully archieved.'
     end
 
     def moderate
+      authorize @bulletin
       @bulletin.moderate!
 
       redirect_to profile_url, notice: 'Bulletin was successfully archieved.'

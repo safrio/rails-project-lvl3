@@ -10,6 +10,7 @@ module Web
       end
 
       def on_moderation
+        authorize Bulletin
         @bulletins = Bulletin.under_moderation.order(id: :desc)
       end
 
@@ -29,6 +30,7 @@ module Web
 
       def set_bulletin
         @bulletin = Bulletin.find(params[:id])
+        authorize @bulletin
       end
     end
   end

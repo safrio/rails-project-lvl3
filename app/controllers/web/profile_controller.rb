@@ -2,9 +2,8 @@
 
 module Web
   class ProfileController < ApplicationController
-    before_action :authenticate_user!
-
     def index
+      authorize Bulletin
       @bulletins = current_user.bulletins.order(id: :desc)
     end
   end

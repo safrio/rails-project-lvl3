@@ -30,4 +30,12 @@ class ApplicationPolicy
   def author?
     @record.user == @user
   end
+
+  def admin?
+    @user.admin?
+  end
+
+  def signed_in?
+    user&.present?
+  end
 end
