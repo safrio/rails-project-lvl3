@@ -2,12 +2,12 @@
 
 one:
   category: one
-  user: one
+  user: admin
   title: MyString
   description: MyText
 
 two:
   category: two
-  user: two
+  user: admin
   title: MyString
   description: MyText

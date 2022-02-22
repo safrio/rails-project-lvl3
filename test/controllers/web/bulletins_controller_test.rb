@@ -14,7 +14,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
     @image = fixture_file_upload(Rails.root.join('test/fixtures/files/test.jpg'), 'image/jpg')
 
-    sign_in(users(:one))
+    sign_in(users(:admin))
   end
 
   test 'should get index' do
