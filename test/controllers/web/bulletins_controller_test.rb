@@ -31,22 +31,25 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     post bulletins_url, params: { bulletin: @bulletin_attrs.merge(image: @image) }
 
     assert { Bulletin.find_by! @bulletin_attrs.merge(user: current_user) }
-
     assert_redirected_to bulletin_url(Bulletin.last)
   end
 
   test 'should show bulletin' do
     get bulletin_url(@existed_bulletin)
+
     assert_response :success
   end
 
   test 'should get edit' do
     get edit_bulletin_url(@existed_bulletin)
+
     assert_response :success
   end
 
   test 'should update bulletin' do
     patch bulletin_url(@existed_bulletin), params: { bulletin: @bulletin_attrs.merge(image: @image) }
+
+    assert { Bulletin.find_by! @bulletin_attrs.merge(user: current_user) }
     assert_redirected_to bulletin_url(@existed_bulletin)
   end
 end
