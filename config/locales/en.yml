@@ -3,6 +3,30 @@ en:
   are_you_sure: Are you sure?
   web:
     admin:
+      bulletins:
+        archive:
+          bulletin_archived: Bulletin was successfully archived.
+        index:
+          actions: Actions
+          archive: Archive
+          edit: Edit
+          published_at: Published at
+          moderate: Moderate
+          show: Show
+          state: State
+          title: Title
+        on_moderation:
+          actions: Actions
+          archive: Archive
+          bulletins_on_moderation: Bulletins on moderation
+          publish: Publish
+          published_at: Published at
+          reject: Reject
+          title: Title
+        publish:
+          bulletin_published: Bulletin was successfully published.
+        reject:
+          bulletin_rejected: Bulletin was successfully rejected.
       categories:
         create:
           category_created: Category was successfully created.
@@ -24,29 +48,6 @@ en:
           add_category: Add category
         update:
           category_updated: Category was successfully updated.
-      bulletins:
-        archive:
-          bulletin_archived: Bulletin was successfully archived.
-        index:
-          actions: Actions
-          archive: Archive
-          edit: Edit
-          published_at: Published at
-          show: Show
-          state: State
-          title: Title
-        on_moderation:
-          actions: Actions
-          archive: Archive
-          bulletins_on_moderation: Bulletins on moderation
-          publish: Publish
-          reject: Reject
-          title: Title
-          published_at: Published at
-        publish:
-          bulletin_published: Bulletin was successfully published.
-        reject:
-          bulletin_rejected: Bulletin was successfully rejected.
     bulletins:
       archive:
         bulletin_archieved: Bulletin was successfully archived.
