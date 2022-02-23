@@ -10,14 +10,15 @@ h1 = t('.bulletins')
       = f.submit 'Search', class: 'btn btn-primary me-2'
       = link_to 'Reset', root_path, class: 'btn btn-outline-primary'
 
-- @bulletins.each do |bulletin|
-  .card-deck.w-25.float-start.m-2
-    .card.shadow-sm
-      = link_to bulletin
-        - image_tag bulletin.image, class: 'card-img-top x-object-fit-cover'
-      .card-body
-        h5.card-title = link_to bulletin.title, bulletin
-      .card-footer
-        small.text-muted = time_ago_in_words bulletin.created_at
+.row
+  - @bulletins.each do |bulletin|
+    .card-deck.col-md-3.mb-4
+      .card.h-100
+        = link_to bulletin
+          - image_tag bulletin.image, class: 'card-img-top x-object-fit-cover'
+        .card-body
+          h5.card-title = link_to bulletin.title, bulletin
+        .card-footer
+          small.text-muted = time_ago_in_words bulletin.created_at
 
 .container.float-start.mt-2 = paginate @bulletins
