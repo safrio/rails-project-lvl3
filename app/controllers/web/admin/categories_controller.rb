@@ -7,7 +7,7 @@ module Web
       before_action :authorize!
 
       def index
-        @categories = Category.order(id: :desc)
+        @categories = Category.order(id: :desc).page params[:page]
       end
 
       def show; end

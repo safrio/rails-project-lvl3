@@ -65,9 +65,11 @@ end
 
 gem 'aasm'
 gem 'flash_rails_messages'
+gem 'kaminari'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
 gem 'pundit'
+gem 'ransack'
 gem 'rollbar'
 gem 'simple_form'
 gem 'slim-rails'

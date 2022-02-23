@@ -6,12 +6,12 @@ module Web
       before_action :set_bulletin, only: %i[publish reject]
 
       def index
-        @bulletins = Bulletin.order(id: :desc)
+        @bulletins = Bulletin.order(id: :desc).page params[:page]
       end
 
       def on_moderation
         authorize Bulletin
-        @bulletins = Bulletin.under_moderation.order(id: :desc)
+        @bulletins = Bulletin.under_moderation.order(id: :desc).page params[:page]
       end
 
       def publish

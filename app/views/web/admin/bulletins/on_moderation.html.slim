@@ -19,3 +19,5 @@ table.table.table-borderless
             = link_to t('.reject'), reject_admin_bulletin_path(bulletin), data: { confirm: t('are_you_sure') }, method: :patch, class: 'btn btn-danger me-2'
           - if bulletin.publishable?
             = link_to t('.publish'), publish_admin_bulletin_path(bulletin), data: { confirm: t('are_you_sure') }, method: :patch, class: 'btn btn-success'
+
+.container.float-start.mt-2 = paginate @bulletins

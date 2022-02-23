@@ -9,3 +9,5 @@ h1 = t('.bulletins')
         h5.card-title = link_to bulletin.title, bulletin
       .card-footer
         small.text-muted = time_ago_in_words bulletin.created_at
+
+.container.float-start.mt-2 = paginate @bulletins
