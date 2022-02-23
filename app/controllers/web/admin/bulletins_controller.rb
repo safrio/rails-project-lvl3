@@ -4,13 +4,14 @@ module Web
   module Admin
     class BulletinsController < AdminController
       before_action :set_bulletin, only: %i[publish reject]
+      before_action :authorize!
 
       def index
-        @bulletins = Bulletin.order(id: :desc).page params[:page]
+        @q = Bulletin.published.ransack(params[:q])
+        @bulletins = @q.result.order(id: :desc).page params[:page]
       end
 
       def on_moderation
-        authorize Bulletin
         @bulletins = Bulletin.under_moderation.order(id: :desc).page params[:page]
       end
 
@@ -27,6 +28,10 @@ module Web
       end
 
       private
+
+      def authorize!
+        authorize Bulletin
+      end
 
       def set_bulletin
         @bulletin = Bulletin.find(params[:id])

@@ -5,7 +5,9 @@ module Web
     before_action :set_bulletin, except: %i[create new index]
 
     def index
-      @bulletins = Bulletin.published.order(id: :desc).page params[:page]
+      @categories = Category.order(:name).map(&:name)
+      @q = Bulletin.published.ransack(params[:q])
+      @bulletins = @q.result.order(id: :desc).page params[:page]
     end
 
     def show; end

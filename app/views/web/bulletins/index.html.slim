@@ -1,5 +1,15 @@
 h1 = t('.bulletins')
 
+= search_form_for @q, url: root_path do |f|
+  .row.my-2
+    .col-5
+      = f.input :title_cont, label: false, hint: 'Search bulletin title'
+    .col-4
+      = f.input :category_name_eq, as: :select, collection: @categories, label: false, hint: 'Choose category'
+    .col-3
+      = f.submit 'Search', class: 'btn btn-primary me-2'
+      = link_to 'Reset', root_path, class: 'btn btn-outline-primary'
+
 - @bulletins.each do |bulletin|
   .card-deck.w-25.float-start.m-2
     .card.shadow-sm
