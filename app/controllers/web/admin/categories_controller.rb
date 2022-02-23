@@ -21,7 +21,7 @@ module Web
       def create
         @category = Category.new(category_params)
         if @category.save
-          redirect_to admin_categories_url, notice: 'Category was successfully created.'
+          redirect_to admin_categories_url, notice: t('.category_created')
         else
           render :new, alert: @category.errors.full_messages
         end
@@ -29,7 +29,7 @@ module Web
 
       def update
         if @category.update(category_params)
-          redirect_to admin_categories_url, notice: 'Category was successfully updated.'
+          redirect_to admin_categories_url, notice: t('.category_updated')
         else
           render :edit, status: :unprocessable_entity
         end
@@ -37,7 +37,7 @@ module Web
 
       def destroy
         if @category.destroy
-          redirect_to admin_categories_url, notice: 'Category was successfully destroyed.'
+          redirect_to admin_categories_url, notice: t('.category_destroyed')
         else
           render :edit, status: :unprocessable_entity
         end

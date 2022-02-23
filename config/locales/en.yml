@@ -2,10 +2,77 @@ en:
   restricted_content: You are not authorized to perform this action.
   are_you_sure: Are you sure?
   web:
+    admin:
+      categories:
+        create:
+          category_created: Category was successfully created.
+        destroy:
+          category_destroyed: Category was successfully destoyed.
+        edit:
+          edit_category: Edit category
+        form:
+          submit: Submit
+        index:
+          actions: Actions
+          add_category: Add category
+          destroy: Destroy
+          edit: Edit
+          id: ID
+          name: Name
+          title: Categories
+        new:
+          add_category: Add category
+        update:
+          category_updated: Category was successfully updated.
+      bulletins:
+        index:
+          actions: Actions
+          archive: Archive
+          edit: Edit
+          published_at: Published at
+          show: Show
+          state: State
+          title: Title
+        on_moderation:
+          actions: Actions
+          archive: Archive
+          bulletins_on_moderation: Bulletins on moderation
+          publish: Publish
+          reject: Reject
+          title: Title
+          published_at: Published at
+        publish:
+          bulletin_published: Bulletin was successfully published.
+          bulletin_rejected: Bulletin was successfully rejected.
     bulletins:
-      form:
-        submit: Submit
-      new:
-        add_bulletin: Add bulletin
+      archive:
+        bulletin_archieved: Bulletin was successfully archived.
+      create:
+        bulletin_created: Bulletin was successfully created.
       edit:
         edit_bulletin: Edit bulletin
+      form:
+        submit: Submit
+      index:
+        bulletins: Bulletins
+        search_title: Search bulletin title
+        choose_category: Choose category
+      new:
+        add_bulletin: Add bulletin
+      moderate:
+        bulletin_moderated: Bulletin was successfully moderated.
+      update:
+        bulletin_updated: Bulletin was successfully updated.
+    profile:
+      index:
+        add_bulletin: Add bulletin
+    shared:
+      bulletins:
+        actions: Actions
+        archive: Archive
+        edit: Edit
+        moderate: Moderate
+        published_at: Published at
+        show: Show
+        state: State
+        title: Title

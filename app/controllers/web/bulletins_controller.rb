@@ -25,7 +25,7 @@ module Web
       authorize Bulletin
       @bulletin = current_user.bulletins.new(bulletin_params)
       if @bulletin.save
-        redirect_to bulletin_url(@bulletin), notice: 'Bulletin was successfully created.'
+        redirect_to bulletin_url(@bulletin), notice: t('.bulletin_created')
       else
         render :new, alert: @bulletin.errors.full_messages
       end
@@ -34,7 +34,7 @@ module Web
     def update
       authorize @bulletin
       if @bulletin.update(bulletin_params)
-        redirect_to bulletin_url(@bulletin), notice: 'Bulletin was successfully updated.'
+        redirect_to bulletin_url(@bulletin), notice: t('.bulletin_updated')
       else
         render :edit, status: :unprocessable_entity
       end
@@ -44,14 +44,14 @@ module Web
       authorize @bulletin
       @bulletin.archive!
 
-      redirect_to profile_url, notice: 'Bulletin was successfully archieved.'
+      redirect_to profile_url, notice: t('.bulletin_archieved')
     end
 
     def moderate
       authorize @bulletin
       @bulletin.moderate!
 
-      redirect_to profile_url, notice: 'Bulletin was successfully archieved.'
+      redirect_to profile_url, notice: t('.bulletin_moderated')
     end
 
     private

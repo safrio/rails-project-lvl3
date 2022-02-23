@@ -1,5 +1,9 @@
 en:
   layouts:
+    admin:
+      bulletins_on_moderation: Bulletins on moderation
+      bulletins: Bulletins
+      categories: Categories
     shared:
       head:
         title: Avito
@@ -7,6 +11,8 @@ en:
         my_bulletin: My bulletin
         add_bulletin: Add bulletin
         application_name: Avito
+        admin: Admin
+        profile: Profile
         sign_in: Sign in
         sign_out: Sign out
         register: Register

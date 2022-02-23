@@ -18,13 +18,13 @@ module Web
       def publish
         @bulletin.publish!
 
-        redirect_to admin_bulletins_url, notice: 'Bulletin was successfully published.'
+        redirect_to admin_bulletins_url, notice: t('.bulletin_published')
       end
 
       def reject
         @bulletin.reject!
 
-        redirect_to admin_bulletins_url, notice: 'Bulletin was successfully rejected.'
+        redirect_to admin_bulletins_url, notice: t('.bulletin_rejected')
       end
 
       private
@@ -35,7 +35,6 @@ module Web
 
       def set_bulletin
         @bulletin = Bulletin.find(params[:id])
-        authorize @bulletin
       end
     end
   end
