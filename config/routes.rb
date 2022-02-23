@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
     delete 'auth', to: 'auth#destroy'
 
-    resources :bulletins, except: %w[index destroy] do
+    resources :bulletins, except: :destroy do
       member do
         patch :archive
         patch :moderate
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       root 'bulletins#on_moderation'
       resources :bulletins do
         member do
+          patch :archive
           patch :publish
           patch :reject
         end

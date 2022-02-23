@@ -25,6 +25,8 @@ en:
         update:
           category_updated: Category was successfully updated.
       bulletins:
+        archive:
+          bulletin_archived: Bulletin was successfully archived.
         index:
           actions: Actions
           archive: Archive
@@ -43,6 +45,7 @@ en:
           published_at: Published at
         publish:
           bulletin_published: Bulletin was successfully published.
+        reject:
           bulletin_rejected: Bulletin was successfully rejected.
     bulletins:
       archive:
