@@ -52,4 +52,22 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     assert { Bulletin.find_by! @bulletin_attrs.merge(user: current_user) }
     assert_redirected_to bulletin_url(@existed_bulletin)
   end
+
+  test 'should moderate bulletin' do
+    patch moderate_bulletin_url(@existed_bulletin)
+
+    @existed_bulletin.reload
+
+    assert { @existed_bulletin.under_moderation? }
+    assert_redirected_to profile_url
+  end
+
+  test 'should archive bulletin' do
+    patch archive_bulletin_url(@existed_bulletin)
+
+    @existed_bulletin.reload
+
+    assert { @existed_bulletin.archived? }
+    assert_redirected_to profile_url
+  end
 end
