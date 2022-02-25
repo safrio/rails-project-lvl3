@@ -10,8 +10,6 @@ module Web
         @categories = Category.order(id: :desc).page params[:page]
       end
 
-      def show; end
-
       def new
         @category = Category.new
       end
