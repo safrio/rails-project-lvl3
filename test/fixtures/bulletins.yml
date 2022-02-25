@@ -12,4 +12,4 @@ two:
   user: admin
   title: MyString
   description: MyText
-  state: draft
+  state: under_moderation
