@@ -18,15 +18,14 @@ Rails.application.routes.draw do
 
     scope 'admin', as: 'admin', module: :admin do
       root 'bulletins#on_moderation'
-      resources :bulletins do
+      resources :bulletins, only: :index do
         member do
           patch :archive
           patch :publish
           patch :reject
         end
       end
-      resources :categories
-      resources :users
+      resources :categories, except: :show
     end
   end
 end
