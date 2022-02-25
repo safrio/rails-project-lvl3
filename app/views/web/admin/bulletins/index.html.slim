@@ -5,7 +5,7 @@ h1.h2.mb-4 Bulletins on moderation
     .col-4
       = f.input :title_cont, label: false, hint: 'Search bulletin title'
     .col-4
-      = f.input :state_eq, as: :select, collection: Bulletin.aasm.states, label: false, hint: 'Choose state'
+      = f.input :state_eq, as: :select, collection: Bulletin.aasm.states_for_select, label: false, hint: 'Choose state'
     .col-4
       = f.submit 'Search', class: 'btn btn-primary me-2'
       = link_to 'Reset', admin_bulletins_path, class: 'btn btn-outline-primary'
