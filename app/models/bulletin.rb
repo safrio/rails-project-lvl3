@@ -32,24 +32,24 @@ class Bulletin < ApplicationRecord
   end
 
   def moderatable?
-    event?(:moderate)
+    allowed_state?(:under_moderation)
   end
 
   def archivable?
-    event?(:archive)
+    allowed_state?(:archived)
   end
 
   def publishable?
-    event?(:publish)
+    allowed_state?(:published)
   end
 
   def rejectable?
-    event?(:reject)
+    allowed_state?(:rejected)
   end
 
   private
 
-  def event?(event)
-    aasm.permitted_transitions.select { |t| t[:event] == event }.present?
+  def allowed_state?(state)
+    aasm.states(permitted: true).map(&:name).include?(state)
   end
 end
