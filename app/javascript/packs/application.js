@@ -5,6 +5,7 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
+import '../../assets/stylesheets/application.scss'
 
 const $ = require('jquery')
 // @ts-ignore

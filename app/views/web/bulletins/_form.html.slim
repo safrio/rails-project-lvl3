@@ -4,10 +4,10 @@ hr
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  = f.input :title, required: true
-  = f.input :description, required: true, hint: (t('.minimum_length', count: @minimum_length) if @minimum_length)
-  = f.association :category, required: true
+  = f.input :title, required: true, input_html: { class: 'mb-3' }
+  = f.input :description, required: true, hint: (t('.minimum_length', count: @minimum_length) if @minimum_length), input_html: { class: 'mb-3' }
+  = f.association :category, required: true, input_html: { class: 'mb-3' }
   - if @bulletin.image.present?
-    = image_tag @bulletin.image
+    = image_tag @bulletin.image.variant(resize_to_limit: [100, 100]), class: 'img-thumbnail mb-2'
   = f.input :image, required: true
   = f.button :submit, t('.submit'), class: 'btn btn-success mt-4 btn-block'

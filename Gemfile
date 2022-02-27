@@ -65,6 +65,7 @@ end
 
 gem 'aasm'
 gem 'flash_rails_messages'
+gem 'image_processing', '~> 1.2'
 gem 'kaminari'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
