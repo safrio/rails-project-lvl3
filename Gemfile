@@ -51,7 +51,6 @@ group :development do
 end
 
 group :production do
-  gem 'active_storage_validations'
   gem 'aws-sdk-s3'
   gem 'pg'
 end
@@ -66,6 +65,7 @@ group :test do
 end
 
 gem 'aasm'
+gem 'active_storage_validations'
 gem 'flash_rails_messages'
 gem 'image_processing', '~> 1.2'
 gem 'kaminari'
