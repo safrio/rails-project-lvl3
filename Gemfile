@@ -51,6 +51,8 @@ group :development do
 end
 
 group :production do
+  gem 'active_storage_validations'
+  gem 'aws-sdk-s3'
   gem 'pg'
 end
 
