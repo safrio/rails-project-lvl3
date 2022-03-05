@@ -32,10 +32,10 @@ class ApplicationPolicy
   end
 
   def admin?
-    @user.admin?
+    @user&.admin?
   end
 
   def signed_in?
-    user&.present?
+    @user&.present?
   end
 end
