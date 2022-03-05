@@ -5,6 +5,7 @@ class Bulletin < ApplicationRecord
 
   validates :title, :description, :image, presence: true
   validates :title, length: { minimum: 3 }
+  validates :image, size: { less_than: 5.megabytes }, content_type: %i[png jpg jpeg]
 
   belongs_to :category
   belongs_to :user
