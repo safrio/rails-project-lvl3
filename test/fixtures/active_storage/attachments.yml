@@ -1,9 +1,9 @@
-ones_picture:
+draft_picture:
   name: image
-  record: one (Bulletin)
-  blob: ones_picture_blob
+  record: draft (Bulletin)
+  blob: draft_picture_blob
 
-twos_picture:
+under_moderation_picture:
   name: image
-  record: two (Bulletin)
-  blob: twos_picture_blob
+  record: under_moderation (Bulletin)
+  blob: under_moderation_picture_blob

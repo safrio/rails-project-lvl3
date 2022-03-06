@@ -10,7 +10,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
       category_id: categories(:one).id
     }
 
-    @existed_bulletin = bulletins(:one)
+    @existed_bulletin = bulletins(:draft)
 
     @image = fixture_file_upload(Rails.root.join('test/fixtures/files/test.jpg'), 'image/jpg')
 

@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+draft:
   category: one
   user: admin
   title: <%= Faker::Lorem.sentence %>
   description: <%= Faker::Lorem.paragraph %>
   state: draft
 
-two:
+under_moderation:
   category: two
   user: admin
   title: <%= Faker::Lorem.sentence %>

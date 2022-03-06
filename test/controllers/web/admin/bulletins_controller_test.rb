@@ -10,10 +10,8 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
       category_id: categories(:one).id
     }
 
-    @existed_draft_bulletin = bulletins(:one)
-    @existed_under_moderation_bulletin = bulletins(:two)
-
-    @image = fixture_file_upload(Rails.root.join('test/fixtures/files/test.jpg'), 'image/jpg')
+    @existed_draft_bulletin = bulletins(:draft)
+    @existed_under_moderation_bulletin = bulletins(:under_moderation)
 
     sign_in(users(:admin))
   end
@@ -29,12 +27,12 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should publish bulletin' do
-    patch publish_bulletin_url(@existed_draft_bulletin)
+    patch publish_admin_bulletin_url(@existed_under_moderation_bulletin)
 
-    @existed_draft_bulletin.reload
+    @existed_under_moderation_bulletin.reload
 
-    assert { @existed_draft_bulletin.published? }
-    assert_redirected_to profile_url
+    assert { @existed_under_moderation_bulletin.published? }
+    assert_redirected_to admin_bulletins_url
   end
 
   test 'should archive bulletin' do
@@ -43,7 +41,7 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
     @existed_draft_bulletin.reload
 
     assert { @existed_draft_bulletin.archived? }
-    assert_redirected_to profile_url
+    assert_redirected_to admin_bulletins_url
   end
 
   test 'should reject bulletin' do
@@ -52,6 +50,6 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
     @existed_under_moderation_bulletin.reload
 
     assert { @existed_under_moderation_bulletin.rejected? }
-    assert_redirected_to profile_url
+    assert_redirected_to admin_bulletins_url
   end
 end
