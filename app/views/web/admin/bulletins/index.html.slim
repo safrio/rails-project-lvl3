@@ -28,9 +28,9 @@ table.table.table-borderless
         td
           = link_to t('.show'), bulletin, class: 'me-2 btn btn-primary'
           = link_to t('.edit'), edit_bulletin_path(bulletin), class: 'me-2 btn btn-primary'
-          - if bulletin.moderatable?
+          - if bulletin.may_moderate?
             = link_to t('.moderate'), moderate_bulletin_path(bulletin), method: :patch, class: 'me-2 btn btn-success'
-          - if bulletin.archivable?
+          - if bulletin.may_archive?
             = link_to t('.archive'), archive_admin_bulletin_path(bulletin), data: { confirm: t('are_you_sure') }, method: :patch, class: 'btn btn-danger'
 
 .container.float-start.mt-2 = paginate @bulletins

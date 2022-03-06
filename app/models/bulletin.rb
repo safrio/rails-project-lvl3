@@ -31,26 +31,4 @@ class Bulletin < ApplicationRecord
       transitions from: :under_moderation, to: :rejected
     end
   end
-
-  def moderatable?
-    allowed_state?(:under_moderation)
-  end
-
-  def archivable?
-    allowed_state?(:archived)
-  end
-
-  def publishable?
-    allowed_state?(:published)
-  end
-
-  def rejectable?
-    allowed_state?(:rejected)
-  end
-
-  private
-
-  def allowed_state?(state)
-    aasm.states(permitted: true).map(&:name).include?(state)
-  end
 end

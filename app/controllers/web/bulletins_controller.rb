@@ -61,7 +61,7 @@ module Web
     end
 
     def bulletin_params
-      params.require(:bulletin).permit(:category_id, :user_id, :title, :description, :image)
+      params.require(:bulletin).permit(:category_id, :title, :description, :image)
     end
   end
 end
