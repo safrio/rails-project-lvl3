@@ -3,13 +3,13 @@
 one:
   category: one
   user: admin
-  title: MyString
-  description: MyText
+  title: <%= Faker::Lorem.sentence %>
+  description: <%= Faker::Lorem.paragraph %>
   state: draft
 
 two:
   category: two
   user: admin
-  title: MyString
-  description: MyText
+  title: <%= Faker::Lorem.sentence %>
+  description: <%= Faker::Lorem.paragraph %>
   state: under_moderation
