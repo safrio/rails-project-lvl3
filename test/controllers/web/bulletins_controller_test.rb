@@ -30,8 +30,9 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should create bulletin' do
     post bulletins_url, params: { bulletin: @bulletin_attrs.merge(image: @image) }
 
-    assert { Bulletin.find_by! @bulletin_attrs.merge(user: current_user) }
-    assert_redirected_to bulletin_url(Bulletin.last)
+    bulletin = nil
+    assert { bulletin = Bulletin.find_by! @bulletin_attrs.merge(user: current_user) }
+    assert_redirected_to bulletin_url(bulletin)
   end
 
   test 'should show bulletin' do

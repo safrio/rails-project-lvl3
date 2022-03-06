@@ -4,12 +4,6 @@ require 'test_helper'
 
 class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @bulletin_attrs = {
-      title: Faker::Job.title,
-      description: Faker::Lorem.paragraph_by_chars(number: 150),
-      category_id: categories(:one).id
-    }
-
     @existed_draft_bulletin = bulletins(:draft)
     @existed_under_moderation_bulletin = bulletins(:under_moderation)
 
