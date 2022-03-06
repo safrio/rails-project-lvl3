@@ -46,7 +46,7 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
   test 'should destroy category' do
     delete admin_category_url(@existed_category)
 
-    assert { !Category.find_by @category_attrs }
+    assert { !Category.find_by(id: @existed_category.id) }
     assert_redirected_to admin_categories_url
   end
 end
