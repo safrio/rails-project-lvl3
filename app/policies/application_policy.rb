@@ -31,10 +31,6 @@ class ApplicationPolicy
     @record.user == @user
   end
 
-  def admin?
-    @user&.admin?
-  end
-
   def signed_in?
     @user&.present?
   end

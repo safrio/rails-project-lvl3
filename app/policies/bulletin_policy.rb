@@ -14,30 +14,18 @@ class BulletinPolicy < ApplicationPolicy
   end
 
   def edit?
-    author? || admin?
+    author?
   end
 
   def update?
-    author? || admin?
+    author?
   end
 
   def archive?
-    author? || admin?
+    author?
   end
 
   def moderate?
-    author? || admin?
-  end
-
-  def on_moderation?
-    admin?
-  end
-
-  def reject?
-    admin?
-  end
-
-  def publish?
-    admin?
+    author?
   end
 end

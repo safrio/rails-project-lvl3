@@ -4,7 +4,6 @@ module Web
   module Admin
     class CategoriesController < AdminController
       before_action :set_category, except: %i[create new index]
-      before_action :authorize!
 
       def index
         @categories = Category.order(id: :desc).page params[:page]
@@ -42,10 +41,6 @@ module Web
       end
 
       private
-
-      def authorize!
-        authorize Category
-      end
 
       def set_category
         @category = Category.find(params[:id])

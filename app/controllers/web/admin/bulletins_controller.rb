@@ -6,13 +6,11 @@ module Web
       before_action :set_bulletin, only: %i[archive publish reject]
 
       def index
-        authorize Bulletin
         @q = Bulletin.ransack(params[:q])
         @bulletins = @q.result.order(id: :desc).page params[:page]
       end
 
       def on_moderation
-        authorize Bulletin
         @bulletins = Bulletin.under_moderation.order(id: :desc).page params[:page]
       end
 
@@ -38,7 +36,6 @@ module Web
 
       def set_bulletin
         @bulletin = Bulletin.find(params[:id])
-        authorize @bulletin
       end
     end
   end
