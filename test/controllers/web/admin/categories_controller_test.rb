@@ -8,7 +8,7 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
       name: Faker::Job.title
     }
 
-    @existed_category = categories(:one)
+    @existed = categories(:one)
 
     sign_in(users(:admin))
   end
@@ -31,22 +31,22 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get edit' do
-    get edit_admin_category_url(@existed_category)
+    get edit_admin_category_url(@existed)
 
     assert_response :success
   end
 
   test 'should update category' do
-    patch admin_category_url(@existed_category), params: { category: @category_attrs }
+    patch admin_category_url(@existed), params: { category: @category_attrs }
 
     assert { Category.find_by! @category_attrs }
     assert_redirected_to admin_categories_url
   end
 
   test 'should destroy category' do
-    delete admin_category_url(@existed_category)
+    delete admin_category_url(@existed)
 
-    assert { !Category.find_by(id: @existed_category.id) }
+    assert { !Category.find_by(id: @existed.id) }
     assert_redirected_to admin_categories_url
   end
 end

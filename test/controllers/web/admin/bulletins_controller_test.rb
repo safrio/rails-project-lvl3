@@ -4,8 +4,8 @@ require 'test_helper'
 
 class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @existed_draft_bulletin = bulletins(:draft)
-    @existed_under_moderation_bulletin = bulletins(:under_moderation)
+    @draft = bulletins(:draft)
+    @under_moderation = bulletins(:under_moderation)
 
     sign_in(users(:admin))
   end
@@ -21,29 +21,29 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should publish bulletin' do
-    patch publish_admin_bulletin_url(@existed_under_moderation_bulletin)
+    patch publish_admin_bulletin_url(@under_moderation)
 
-    @existed_under_moderation_bulletin.reload
+    @under_moderation.reload
 
-    assert { @existed_under_moderation_bulletin.published? }
+    assert { @under_moderation.published? }
     assert_redirected_to admin_bulletins_url
   end
 
   test 'should archive bulletin' do
-    patch archive_admin_bulletin_url(@existed_draft_bulletin)
+    patch archive_admin_bulletin_url(@draft)
 
-    @existed_draft_bulletin.reload
+    @draft.reload
 
-    assert { @existed_draft_bulletin.archived? }
+    assert { @draft.archived? }
     assert_redirected_to admin_bulletins_url
   end
 
   test 'should reject bulletin' do
-    patch reject_admin_bulletin_url(@existed_under_moderation_bulletin)
+    patch reject_admin_bulletin_url(@under_moderation)
 
-    @existed_under_moderation_bulletin.reload
+    @under_moderation.reload
 
-    assert { @existed_under_moderation_bulletin.rejected? }
+    assert { @under_moderation.rejected? }
     assert_redirected_to admin_bulletins_url
   end
 end

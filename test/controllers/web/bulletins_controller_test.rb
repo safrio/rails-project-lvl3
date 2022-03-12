@@ -10,7 +10,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
       category_id: categories(:one).id
     }
 
-    @existed_bulletin = bulletins(:draft)
+    @existed = bulletins(:draft)
 
     @image = fixture_file_upload(Rails.root.join('test/fixtures/files/test.jpg'), 'image/jpg')
 
@@ -30,45 +30,45 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should create bulletin' do
     post bulletins_url, params: { bulletin: @bulletin_attrs.merge(image: @image) }
 
-    bulletin = nil
-    assert { bulletin = Bulletin.find_by! @bulletin_attrs.merge(user: current_user) }
+    bulletin = Bulletin.find_by! @bulletin_attrs.merge(user: current_user)
+    assert { bulletin }
     assert_redirected_to bulletin_url(bulletin)
   end
 
   test 'should show bulletin' do
-    get bulletin_url(@existed_bulletin)
+    get bulletin_url(@existed)
 
     assert_response :success
   end
 
   test 'should get edit' do
-    get edit_bulletin_url(@existed_bulletin)
+    get edit_bulletin_url(@existed)
 
     assert_response :success
   end
 
   test 'should update bulletin' do
-    patch bulletin_url(@existed_bulletin), params: { bulletin: @bulletin_attrs.merge(image: @image) }
+    patch bulletin_url(@existed), params: { bulletin: @bulletin_attrs.merge(image: @image) }
 
     assert { Bulletin.find_by! @bulletin_attrs.merge(user: current_user) }
-    assert_redirected_to bulletin_url(@existed_bulletin)
+    assert_redirected_to bulletin_url(@existed)
   end
 
   test 'should moderate bulletin' do
-    patch moderate_bulletin_url(@existed_bulletin)
+    patch moderate_bulletin_url(@existed)
 
-    @existed_bulletin.reload
+    @existed.reload
 
-    assert { @existed_bulletin.under_moderation? }
+    assert { @existed.under_moderation? }
     assert_redirected_to profile_url
   end
 
   test 'should archive bulletin' do
-    patch archive_bulletin_url(@existed_bulletin)
+    patch archive_bulletin_url(@existed)
 
-    @existed_bulletin.reload
+    @existed.reload
 
-    assert { @existed_bulletin.archived? }
+    assert { @existed.archived? }
     assert_redirected_to profile_url
   end
 end
